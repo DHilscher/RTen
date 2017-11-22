@@ -54,6 +54,18 @@ class NavigationLayout extends Component {
             initialRoute={Router.getRoute("about")}
           />
         </TabItem>
+        <TabItem
+          id="schedule"
+          title="Schedule"
+          renderTitle={this.renderTitle}
+          renderIcon={isSelected => this.renderIcon("ios-heart", isSelected)}
+        >
+          <StackNavigation
+            id="schedule"
+            navigatorUID="schedule"
+            initialRoute={Router.getRoute("schedule")}
+          />
+        </TabItem>
       </TabNavigation>
     );
   }

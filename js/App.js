@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import About from "./scenes/About";
+import Schedule from "./scenes/Schedule";
+
 import {
   NavigationContext,
   NavigationProvider,
