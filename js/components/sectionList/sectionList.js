@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, SectionList, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
-import { goToSession } from "../../lib/helpers";
+import { goToSession } from "../../lib/navigationHelpers";
 import Moment from "moment";
 
 const SessionList = ({ data, currentNavigatorUID }) => {

@@ -1,6 +1,7 @@
-import { NavigationActions } from "@expo/ex-navigation";
-import Store from "../redux/store";
-import Router from "../navigation/routes";
+export const formatDataObject = data => {
+  const dataObject = Object.getOwnPropertyNames(data).map(index => data[index]);
+  return dataObject[0];
+};
 
 export const formatSessionData = sessions => {
   return sessions
@@ -12,13 +13,4 @@ export const formatSessionData = sessions => {
       return acc;
     }, [])
     .sort((a, b) => a.title - b.title);
-};
-
-export const goToSession = (currentNavigatorUID, sessionData) => {
-  Store.dispatch(
-    NavigationActions.push(
-      currentNavigatorUID,
-      Router.getRoute("session", { sessionData })
-    )
-  );
 };
