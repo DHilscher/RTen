@@ -1,3 +1,5 @@
+import { formatSessionData } from "../../lib/helpers";
+
 export const getSessionsBegin = () => {
   return { type: "GET_SESSIONS_BEGIN" };
 };
@@ -19,7 +21,7 @@ export const getSessions = () => {
         return resp.json();
       })
       .then(data => {
-        dispatch(getSessionsSuccess(data));
+        dispatch(getSessionsSuccess(formatSessionData(data)));
       })
       .catch(err => {
         dispatch(getSessionsError(err));
