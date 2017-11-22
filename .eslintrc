@@ -5,7 +5,7 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["react", "react-native", "es6"],
+  "plugins": ["react", "react-native"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {

@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import About from "./About";
 
 import Router from "../../navigation/routes";
 
+import { getCoc } from "../../redux/modules/conduct";
+import { connect } from "react-redux";
+
 class AboutContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      isLoading: true
-    };
-  }
   static PropTypes = {};
 
   static route = {
@@ -22,32 +18,30 @@ class AboutContainer extends Component {
   };
 
   componentDidMount() {
-    let codeOfConduct =
-      "https://r10app-95fea.firebaseio.com/code_of_conduct.json";
-    fetch(codeOfConduct)
-      // if fetch is successful, read our JSON out of the response
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
-  }
-  componentDidUpdate() {
-    if (this.state.data && this.state.isLoading) {
-      this.setState({ isLoading: false });
-    }
+    this.props.dispatch(getCoc());
   }
 
   render() {
-    console.log(this.state.data);
-    if (this.state.isLoading) {
+    console.log(this.props);
+    const { isLoading, conductData } = this.props;
+    if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
     } else {
-      return <About data={this.state.data} />;
+      return (
+        <ScrollView>
+          <About data={conductData} />
+        </ScrollView>
+      );
     }
   }
 }
 
 AboutContainer.PropTypes = {};
 
-export default AboutContainer;
+const mapStateToProps = state => {
+  return {
+    conductData: state.CodeOfConduct.codeOfConduct,
+    isLoading: state.CodeOfConduct.isLoading
+  };
+};
+export default connect(mapStateToProps)(AboutContainer);
