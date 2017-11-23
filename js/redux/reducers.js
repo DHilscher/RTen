@@ -6,8 +6,11 @@ import CodeOfConductReducer from "./modules/conduct";
 
 import SessionsReducer from "./modules/sessions";
 
+import SpeakerReducer from "./modules/speaker";
+
 export default combineReducers({
   navigation: NavigationReducer,
   CodeOfConduct: CodeOfConductReducer,
-  sessions: SessionsReducer
+  sessions: SessionsReducer,
+  speaker: SpeakerReducer
 });

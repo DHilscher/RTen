@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ActivityIndicator, View } from "react-native";
-import Session from "./Session";
+import Speaker from "./Speaker";
 
 import Router from "../../navigation/routes";
 
 import { connect } from "react-redux";
 
-class SessionContainer extends Component {
+class SpeakerContainer extends Component {
   static PropTypes = {};
 
   static route = {
     navigationBar: {
-      title: "Session"
+      title: "Speaker"
     }
   };
 
@@ -24,20 +24,19 @@ class SessionContainer extends Component {
     } else {
       return (
         <View>
-          <Session data={sessionData} />
+          <Speaker data={sessionData} />
         </View>
       );
     }
   }
 }
 
-SessionContainer.PropTypes = {};
+SpeakerContainer.PropTypes = {};
 
 const mapStateToProps = state => {
   return {
     // sessionData: state.sessions.sessions,
-    isLoading: state.sessions.isLoading,
-    speaker: state.speaker.speaker
+    isLoading: state.sessions.isLoading
   };
 };
-export default connect(mapStateToProps)(SessionContainer);
+export default connect(mapStateToProps)(SpeakerContainer);
