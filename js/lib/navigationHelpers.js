@@ -10,3 +10,12 @@ export const goToSession = (currentNavigatorUID, sessionData) => {
     )
   );
 };
+
+export const goToSpeaker = (currentNavigatorUID, sessionData) => {
+  Store.dispatch(
+    NavigationActions.push(
+      currentNavigatorUID,
+      Router.getRoute("speaker", { sessionData })
+    )
+  );
+};

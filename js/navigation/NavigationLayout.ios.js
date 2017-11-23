@@ -46,7 +46,8 @@ class NavigationLayout extends Component {
           id="about"
           title="About"
           renderTitle={this.renderTitle}
-          renderIcon={isSelected => this.renderIcon("ios-heart", isSelected)}
+          renderIcon={isSelected =>
+            this.renderIcon("ios-information-circle-outline", isSelected)}
         >
           <StackNavigation
             id="about"
@@ -58,7 +59,8 @@ class NavigationLayout extends Component {
           id="schedule"
           title="Schedule"
           renderTitle={this.renderTitle}
-          renderIcon={isSelected => this.renderIcon("ios-heart", isSelected)}
+          renderIcon={isSelected =>
+            this.renderIcon("ios-calendar-outline", isSelected)}
         >
           <StackNavigation
             id="schedule"
