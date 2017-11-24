@@ -1,17 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import Moment from "moment";
 
-const Speaker = ({ data }) => {
-  console.log(data);
+const Speaker = ({ speakerData }) => {
+  console.log(speakerData);
 
   return (
-    <View key={data.session_id}>
-      <Text>{data.location}</Text>
-      <Text>{data.title}</Text>
-      <Text>{Moment.unix(data.start_time).format("h:mm a")}</Text>
-      <Text>This is a Speaker page!!!!</Text>
+    <View key={speakerData.session_id}>
+      <Image
+        style={{ height: 100, width: 100, borderRadius: 50 }}
+        source={{ uri: `${speakerData.image}` }}
+      />
+      <Text>{speakerData.name}</Text>
+      <Text>{speakerData.bio}</Text>
     </View>
   );
 };

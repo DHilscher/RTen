@@ -18,13 +18,13 @@ class SpeakerContainer extends Component {
 
   render() {
     console.log(this.props);
-    const { isLoading, sessionData } = this.props;
+    const { isLoading, sessionData, speakerData } = this.props;
     if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
     } else {
       return (
         <View>
-          <Speaker data={sessionData} />
+          <Speaker speakerData={speakerData} data={sessionData} />
         </View>
       );
     }
@@ -35,7 +35,7 @@ SpeakerContainer.PropTypes = {};
 
 const mapStateToProps = state => {
   return {
-    // sessionData: state.sessions.sessions,
+    speakerData: state.speaker.speaker,
     isLoading: state.sessions.isLoading
   };
 };

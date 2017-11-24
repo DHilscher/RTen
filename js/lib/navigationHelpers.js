@@ -11,11 +11,8 @@ export const goToSession = (currentNavigatorUID, sessionData) => {
   );
 };
 
-export const goToSpeaker = (currentNavigatorUID, sessionData) => {
+export const goToSpeaker = goToSpeaker => {
   Store.dispatch(
-    NavigationActions.push(
-      currentNavigatorUID,
-      Router.getRoute("speaker", { sessionData })
-    )
+    NavigationActions.push("root", Router.getRoute("speaker", { goToSpeaker }))
   );
 };

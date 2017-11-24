@@ -6,6 +6,7 @@ import Session from "./Session";
 import Router from "../../navigation/routes";
 
 import { connect } from "react-redux";
+import { getSpeaker } from "../../redux/modules/speaker";
 
 class SessionContainer extends Component {
   static PropTypes = {};
@@ -16,15 +17,28 @@ class SessionContainer extends Component {
     }
   };
 
+  componentDidMount() {
+    this.props.dispatch(getSpeaker(this.props.sessionData.speaker));
+  }
+
   render() {
     console.log(this.props);
-    const { isLoading, sessionData } = this.props;
+    const {
+      isLoading,
+      sessionData,
+      speakerData,
+      currentNavigatorUID
+    } = this.props;
     if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
     } else {
       return (
         <View>
-          <Session data={sessionData} />
+          <Session
+            currentNavigatorUID={currentNavigatorUID}
+            speakerData={speakerData}
+            data={sessionData}
+          />
         </View>
       );
     }
@@ -35,9 +49,8 @@ SessionContainer.PropTypes = {};
 
 const mapStateToProps = state => {
   return {
-    // sessionData: state.sessions.sessions,
     isLoading: state.sessions.isLoading,
-    speaker: state.speaker.speaker
+    speakerData: state.speaker.speaker
   };
 };
 export default connect(mapStateToProps)(SessionContainer);

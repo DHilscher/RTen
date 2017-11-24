@@ -17,7 +17,7 @@ export const getSpeaker = speakerId => {
   return dispatch => {
     dispatch(getSpeakerBegin());
     fetch(
-      `https://r10app-95fea.firebaseio.com/speakers.json?orderBy="speaker_id"&equalTo="${speakerId}"`
+      `https://r10app-95fea.firebaseio.com/speakers.json?orderBy="speaker_id"&equalTo=%22${speakerId}%22`
     )
       .then(resp => {
         return resp.json();
