@@ -68,6 +68,19 @@ class NavigationLayout extends Component {
             initialRoute={Router.getRoute("schedule")}
           />
         </TabItem>
+        <TabItem
+          id="faves"
+          title="Faves"
+          renderTitle={this.renderTitle}
+          renderIcon={isSelected =>
+            this.renderIcon("ios-calendar-outline", isSelected)}
+        >
+          <StackNavigation
+            id="faves"
+            navigatorUID="faves"
+            initialRoute={Router.getRoute("faves")}
+          />
+        </TabItem>
       </TabNavigation>
     );
   }

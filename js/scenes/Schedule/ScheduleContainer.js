@@ -7,6 +7,7 @@ import Router from "../../navigation/routes";
 
 import { getSessions } from "../../redux/modules/sessions";
 import { connect } from "react-redux";
+import { formatSessionData } from "../../lib/helpers";
 
 class ScheduleContainer extends Component {
   static PropTypes = {};
@@ -30,7 +31,7 @@ class ScheduleContainer extends Component {
       return (
         <View>
           <Schedule
-            data={sessionsData}
+            data={formatSessionData(sessionsData)}
             currentNavigatorUID={currentNavigatorUID}
           />
         </View>

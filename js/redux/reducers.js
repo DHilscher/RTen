@@ -8,9 +8,12 @@ import SessionsReducer from "./modules/sessions";
 
 import SpeakerReducer from "./modules/speaker";
 
+import FavesReducer from "./modules/faves";
+
 export default combineReducers({
   navigation: NavigationReducer,
   CodeOfConduct: CodeOfConductReducer,
   sessions: SessionsReducer,
-  speaker: SpeakerReducer
+  speaker: SpeakerReducer,
+  faves: FavesReducer
 });

@@ -21,7 +21,7 @@ export const getSessions = () => {
         return resp.json();
       })
       .then(data => {
-        dispatch(getSessionsSuccess(formatSessionData(data)));
+        dispatch(getSessionsSuccess(data));
       })
       .catch(err => {
         dispatch(getSessionsError(err));

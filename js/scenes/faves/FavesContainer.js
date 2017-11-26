@@ -1,12 +1,62 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View } from "react-native";
+import PropTypes from "prop-types";
+import { ActivityIndicator, SectionList, View } from "react-native";
+import Faves from "./Faves";
 
-import Faves from "./faves";
+import Router from "../../navigation/routes";
+
+import { connect } from "react-redux";
+import { getFaves } from "../../redux/modules/faves";
 
 class FavesContainer extends Component {
+  static PropTypes = {};
+
+  static route = {
+    navigationBar: {
+      title: "Faves"
+    }
+  };
+
+  componentDidMount() {
+    this.props.dispatch(getFaves());
+  }
+
   render() {
-    return <Faves />;
+    console.log(this.props);
+    const {
+      isLoading,
+      sessionsData,
+      currentNavigatorUID,
+      allFaves
+    } = this.props;
+
+    const faveSessionData = sessionsData.filter(session => {
+      return allFaves.indexOf(session.session_id) > -1;
+    });
+    if (isLoading) {
+      return <ActivityIndicator animating={true} size="small" />;
+    } else {
+      return (
+        <View>
+          <Faves
+            data={faveSessionData}
+            currentNavigatorUID={currentNavigatorUID}
+            allFaves={allFaves}
+          />
+        </View>
+      );
+    }
   }
 }
 
-export default FavesContainer;
+FavesContainer.PropTypes = {};
+
+const mapStateToProps = state => {
+  return {
+    sessionsData: state.sessions.sessions,
+    isLoading: state.sessions.isLoading,
+    currentNavigatorUID: state.navigation.currentNavigatorUID,
+    allFaves: state.faves.faves
+  };
+};
+export default connect(mapStateToProps)(FavesContainer);
