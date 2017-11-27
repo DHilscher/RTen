@@ -1,20 +1,24 @@
 import React from "react";
-import { Text, View, Image, Platform } from "react-native";
+import { Text, View, Image, Platform, Linking } from "react-native";
 import PropTypes from "prop-types";
 import { leaveSpeaker } from "../../lib/navigationHelpers";
 import Icon from "react-native-vector-icons/Ionicons";
+import styles from "./styles";
+import LinearGradient from "react-native-linear-gradient";
+import { colors } from "../../config/styles";
 
 const Speaker = ({ speakerData }) => {
   return (
-    <View style={{ backgroundColor: "black", height: "100%" }}>
-      <View style={{ backgroundColor: "black" }} className="speaker-header">
+    <View style={styles.Container}>
+      <View style={styles.SpeakerHeader}>
         <Icon
           onPress={() => leaveSpeaker()}
           name={Platform.OS == "ios" ? "ios-close" : "md-close"}
           size={40}
           color={"white"}
+          style={styles.Icon}
         />
-        <Text style={{ color: "white" }}>About the Speaker</Text>
+        <Text style={styles.AboutSpeaker}>About the Speaker</Text>
       </View>
       <View
         style={{
@@ -23,16 +27,28 @@ const Speaker = ({ speakerData }) => {
           alignItems: "center",
           borderRadius: 50,
           width: "95%",
-          height: "100%"
+          height: "100%",
+          backgroundColor: "white"
         }}
         key={speakerData.session_id}
       >
-        <Image
-          style={{ height: 100, width: 100, borderRadius: 50 }}
-          source={{ uri: `${speakerData.image}` }}
-        />
-        <Text style={{ color: "white" }}>{speakerData.name}</Text>
-        <Text style={{ color: "white" }}>{speakerData.bio}</Text>
+        <Image style={styles.Image} source={{ uri: `${speakerData.image}` }} />
+        <Text>{speakerData.name}</Text>
+        <Text>{speakerData.bio}</Text>
+        <LinearGradient
+          start={{ x: 0.9, y: 0 }}
+          end={{ x: 0.3, y: 1.0 }}
+          locations={[0, 1]}
+          colors={[colors.purple, colors.blue]}
+          style={styles.ButtonGradient}
+        >
+          <Text
+            style={styles.Button}
+            onPress={() => Linking.openURL(speakerData.url)}
+          >
+            Read More on Wikipedia
+          </Text>
+        </LinearGradient>
       </View>
     </View>
   );
