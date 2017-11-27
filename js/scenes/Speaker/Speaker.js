@@ -32,7 +32,7 @@ const Speaker = ({ speakerData }) => {
           source={{ uri: `${speakerData.image}` }}
         />
         <Text style={{ color: "white" }}>{speakerData.name}</Text>
-        <Text>{speakerData.bio}</Text>
+        <Text style={{ color: "white" }}>{speakerData.bio}</Text>
       </View>
     </View>
   );

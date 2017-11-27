@@ -4,7 +4,7 @@ import { typography, colors } from "../../config/styles";
 
 export default StyleSheet.create({
   Title: {
-    fontFamily: typography.fontMainLight,
+    fontFamily: typography.fontMainReg,
     fontSize: 14,
     color: colors.purple,
     marginLeft: "3%"

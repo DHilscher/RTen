@@ -1,9 +1,18 @@
 import React from "react";
-import { Text, View, TouchableHighlight, Image, Button } from "react-native";
+import {
+  Text,
+  View,
+  TouchableHighlight,
+  Image,
+  Button,
+  Platform
+} from "react-native";
 import PropTypes from "prop-types";
 import { goToSpeaker } from "../../lib/navigationHelpers";
 import Moment from "moment";
 import { createFave, deleteFave } from "../../config/models";
+import Icon from "react-native-vector-icons/Ionicons";
+import styles from "./styles";
 
 const Session = ({ data, speakerData, allFaves }) => {
   console.log(speakerData);
@@ -11,6 +20,13 @@ const Session = ({ data, speakerData, allFaves }) => {
   return (
     <View>
       <View key={data.session_id}>
+        {allFaves.indexOf(data.session_id) !== -1 ? (
+          <Icon
+            style={styles.Icon}
+            name={Platform.OS == "ios" ? "ios-heart" : "md-heart"}
+            size={14}
+          />
+        ) : null}
         <Text>{data.location}</Text>
         <Text>{data.title}</Text>
         <Text>{Moment.unix(data.start_time).format("h:mm a")}</Text>

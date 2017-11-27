@@ -33,8 +33,7 @@ export default StyleSheet.create({
   Icon: {
     position: "absolute",
     right: 15,
-    top: 1,
-    color: colors.red,
-    zIndex: 9
+    bottom: 5,
+    color: colors.red
   }
 });

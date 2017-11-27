@@ -30,7 +30,13 @@ class NavigationLayout extends Component {
             initialRoute={Router.getRoute("schedule")}
           />
         </DrawerNavigationItem>
-
+        <DrawerNavigationItem
+          id="faves"
+          renderTitle={isSelected => this.renderTitle("Faves", isSelected)}
+          renderIcon={isSelected => this.renderIcon("md-heart", isSelected)}
+        >
+          <StackNavigation id="faves" initialRoute={Router.getRoute("faves")} />
+        </DrawerNavigationItem>
         <DrawerNavigationItem
           id="about"
           renderTitle={isSelected => this.renderTitle("About", isSelected)}
@@ -38,14 +44,6 @@ class NavigationLayout extends Component {
             this.renderIcon("md-information-circle", isSelected)}
         >
           <StackNavigation id="about" initialRoute={Router.getRoute("about")} />
-        </DrawerNavigationItem>
-        <DrawerNavigationItem
-          id="faves"
-          renderTitle={isSelected => this.renderTitle("Faves", isSelected)}
-          renderIcon={isSelected =>
-            this.renderIcon("md-information-circle", isSelected)}
-        >
-          <StackNavigation id="faves" initialRoute={Router.getRoute("faves")} />
         </DrawerNavigationItem>
       </DrawerNavigation>
     );
