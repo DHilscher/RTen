@@ -7,6 +7,8 @@ import Router from "../../navigation/routes";
 
 import { connect } from "react-redux";
 import { getSpeaker } from "../../redux/modules/speaker";
+import { getFaves } from "../../redux/modules/faves";
+import realm from "../../config/models";
 
 class SessionContainer extends Component {
   static PropTypes = {};
@@ -18,8 +20,14 @@ class SessionContainer extends Component {
   };
 
   componentDidMount() {
+    realm.addListener("change", this._updateFaves);
+    this.props.dispatch(getFaves());
     this.props.dispatch(getSpeaker(this.props.sessionData.speaker));
   }
+
+  _updateFaves = () => {
+    this.props.dispatch(getFaves());
+  };
 
   render() {
     console.log(this.props);

@@ -24,7 +24,7 @@ const Session = ({ data, speakerData, allFaves }) => {
           </View>
         </View>
       </TouchableHighlight>
-      {allFaves.indexOf(data.session_id) ? (
+      {allFaves.indexOf(data.session_id) === -1 ? (
         <Button
           title="addToFaves"
           onPress={() => createFave(data.session_id)}

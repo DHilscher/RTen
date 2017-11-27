@@ -26,7 +26,7 @@ const SessionList = ({ data, currentNavigatorUID, allFaves }) => {
                 <Text>{item.title}</Text>
                 <Text>{item.location}</Text>
                 <View>
-                  {!allFaves.indexOf(item.session_id) ? (
+                  {allFaves.indexOf(item.session_id) !== -1 ? (
                     <Icon
                       name={Platform.OS == "ios" ? "ios-heart" : "md-heart"}
                       size={24}
