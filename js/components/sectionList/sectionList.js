@@ -12,9 +12,7 @@ import { goToSession } from "../../lib/navigationHelpers";
 import Moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const SessionList = ({ data, currentNavigatorUID }) => {
-  console.log(data.length);
-
+const SessionList = ({ data, currentNavigatorUID, allFaves }) => {
   if (data.length > 0) {
     return (
       <SectionList
@@ -28,11 +26,13 @@ const SessionList = ({ data, currentNavigatorUID }) => {
                 <Text>{item.title}</Text>
                 <Text>{item.location}</Text>
                 <View>
-                  <Icon
-                    name={Platform.OS == "ios" ? "ios-heart" : "md-heart"}
-                    size={24}
-                    color={"red"}
-                  />
+                  {!allFaves.indexOf(item.session_id) ? (
+                    <Icon
+                      name={Platform.OS == "ios" ? "ios-heart" : "md-heart"}
+                      size={24}
+                      color={"red"}
+                    />
+                  ) : null}
                 </View>
               </View>
             </TouchableHighlight>

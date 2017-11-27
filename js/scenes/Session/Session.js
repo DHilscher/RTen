@@ -24,11 +24,17 @@ const Session = ({ data, speakerData, allFaves }) => {
           </View>
         </View>
       </TouchableHighlight>
-      <Button title="addToFaves" onPress={() => createFave(data.session_id)} />
-      <Button
-        title="deleteFromFaves"
-        onPress={() => deleteFave(data.session_id)}
-      />
+      {allFaves.indexOf(data.session_id) ? (
+        <Button
+          title="addToFaves"
+          onPress={() => createFave(data.session_id)}
+        />
+      ) : (
+        <Button
+          title="deleteFromFaves"
+          onPress={() => deleteFave(data.session_id)}
+        />
+      )}
     </View>
   );
 };

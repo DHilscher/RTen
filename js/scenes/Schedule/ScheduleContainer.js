@@ -8,6 +8,7 @@ import Router from "../../navigation/routes";
 import { getSessions } from "../../redux/modules/sessions";
 import { connect } from "react-redux";
 import { formatSessionData } from "../../lib/helpers";
+import { getFaves } from "../../redux/modules/faves";
 
 class ScheduleContainer extends Component {
   static PropTypes = {};
@@ -19,6 +20,7 @@ class ScheduleContainer extends Component {
   };
 
   componentDidMount() {
+    this.props.dispatch(getFaves());
     this.props.dispatch(getSessions());
   }
 
