@@ -37,6 +37,9 @@ const SessionList = ({ data, currentNavigatorUID, allFaves }) => {
             </TouchableHighlight>
           );
         }}
+        ItemSeparatorComponent={() => (
+          <View style={styles.ItemSeparatorComponent} />
+        )}
         renderSectionHeader={({ section }) => {
           return (
             <View style={styles.SectionHeader} key={section.session_id}>

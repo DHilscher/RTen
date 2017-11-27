@@ -12,28 +12,29 @@ export default StyleSheet.create({
   },
   Title: {
     fontFamily: typography.fontMainReg,
+    marginLeft: "3%",
     marginTop: 10,
     fontSize: 14
   },
   Location: {
     fontFamily: typography.fontMainLight,
-    marginTop: 10,
-    fontSize: 10
+    marginLeft: "3%",
+    marginTop: 5,
+    marginBottom: 10,
+    fontSize: 12,
+    color: colors.medGrey
   },
   SectionHeader: {
     backgroundColor: colors.lightGrey
   },
-  AnimatedContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flexDirection: "row",
-    marginTop: 20
-  },
   Icon: {
     position: "absolute",
     right: 15,
-    bottom: 5,
+    bottom: 10,
     color: colors.red
+  },
+  ItemSeparatorComponent: {
+    height: 2,
+    backgroundColor: colors.lightGrey
   }
 });
