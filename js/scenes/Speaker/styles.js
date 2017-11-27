@@ -16,6 +16,15 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center"
   },
+  SpeakerInfoContainer: {
+    flex: 1,
+    alignSelf: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    width: "95%",
+    height: "100%",
+    backgroundColor: "white"
+  },
   Icon: {
     justifyContent: "flex-start"
   },
@@ -24,23 +33,22 @@ export default StyleSheet.create({
     height: "100%"
   },
 
-  Description: {
-    fontFamily: typography.fontMainReg,
-    marginTop: 12,
-    fontSize: 12,
-    color: colors.medGrey
+  Bio: {
+    fontFamily: typography.fontMainLight,
+    marginTop: 25,
+    fontSize: 18
   },
 
   Image: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    marginTop: 25
   },
   Name: {
     fontFamily: typography.fontMainReg,
-    fontSize: 12,
-    color: colors.medGrey,
-    marginLeft: "3%"
+    fontSize: 25,
+    marginTop: 25
   },
   Button: {
     fontFamily: typography.fontMainReg,

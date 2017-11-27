@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Platform, Linking } from "react-native";
+import { Text, View, Image, Platform, Linking, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 import { leaveSpeaker } from "../../lib/navigationHelpers";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -9,7 +9,7 @@ import { colors } from "../../config/styles";
 
 const Speaker = ({ speakerData }) => {
   return (
-    <View style={styles.Container}>
+    <ScrollView style={styles.Container}>
       <View style={styles.SpeakerHeader}>
         <Icon
           onPress={() => leaveSpeaker()}
@@ -20,21 +20,10 @@ const Speaker = ({ speakerData }) => {
         />
         <Text style={styles.AboutSpeaker}>About the Speaker</Text>
       </View>
-      <View
-        style={{
-          flex: 1,
-          alignSelf: "center",
-          alignItems: "center",
-          borderRadius: 50,
-          width: "95%",
-          height: "100%",
-          backgroundColor: "white"
-        }}
-        key={speakerData.session_id}
-      >
+      <View style={styles.SpeakerInfoContainer} key={speakerData.session_id}>
         <Image style={styles.Image} source={{ uri: `${speakerData.image}` }} />
-        <Text>{speakerData.name}</Text>
-        <Text>{speakerData.bio}</Text>
+        <Text style={styles.Name}>{speakerData.name}</Text>
+        <Text style={styles.Bio}>{speakerData.bio}</Text>
         <LinearGradient
           start={{ x: 0.9, y: 0 }}
           end={{ x: 0.3, y: 1.0 }}
@@ -50,7 +39,7 @@ const Speaker = ({ speakerData }) => {
           </Text>
         </LinearGradient>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
