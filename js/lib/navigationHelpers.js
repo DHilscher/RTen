@@ -16,3 +16,7 @@ export const goToSpeaker = goToSpeaker => {
     NavigationActions.push("root", Router.getRoute("speaker", { goToSpeaker }))
   );
 };
+
+export const leaveSpeaker = () => {
+  Store.dispatch(NavigationActions.pop("root"));
+};

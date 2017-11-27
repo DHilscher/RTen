@@ -10,16 +10,6 @@ import { connect } from "react-redux";
 class SpeakerContainer extends Component {
   static PropTypes = {};
 
-  static route = {
-    navigationBar: {
-      title: "About the Speaker",
-      leftButton: {
-        title: "X",
-        handler: () => leaveSpeaker()
-      }
-    }
-  };
-
   render() {
     console.log(this.props);
     const { isLoading, sessionData, speakerData } = this.props;

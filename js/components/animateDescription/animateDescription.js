@@ -11,6 +11,8 @@ import {
 import PropTypes from "prop-types";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import styles from "./styles";
+
 class AnimateDescription extends Component {
   constructor() {
     super();
@@ -58,33 +60,20 @@ class AnimateDescription extends Component {
     return (
       <View>
         <TouchableWithoutFeedback onPress={() => this._startAnimation()}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "flex-start",
-              alignItems: "center",
-              flexDirection: "row"
-            }}
-          >
+          <View style={styles.AnimatedContainer}>
             <Animated.View
               style={{
                 transform: [{ rotate: spin }]
               }}
             >
-              <Icon
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-                name={this.state.iconName}
-                size={24}
-                color={"purple"}
-              />
+              <Icon style={styles.Icon} name={this.state.iconName} size={15} />
             </Animated.View>
-            <Text>{data.title}</Text>
+            <Text style={styles.Title}>{data.title}</Text>
           </View>
         </TouchableWithoutFeedback>
-        {this.state.showText && <Text>{data.description}</Text>}
+        {this.state.showText && (
+          <Text style={styles.Description}>{data.description}</Text>
+        )}
       </View>
     );
   }
