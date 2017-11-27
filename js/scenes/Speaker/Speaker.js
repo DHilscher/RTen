@@ -8,10 +8,12 @@ const Speaker = ({ speakerData }) => {
 
   return (
     <View key={speakerData.session_id}>
-      <Image
-        style={{ height: 100, width: 100, borderRadius: 50 }}
-        source={{ uri: `${speakerData.image}` }}
-      />
+      {speakerData.image !== -1 ? (
+        <Image
+          style={{ height: 100, width: 100, borderRadius: 50 }}
+          source={{ uri: `${speakerData.image}` }}
+        />
+      ) : null}
       <Text>{speakerData.name}</Text>
       <Text>{speakerData.bio}</Text>
     </View>

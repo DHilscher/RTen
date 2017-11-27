@@ -10,20 +10,22 @@ const Session = ({ data, speakerData, allFaves }) => {
 
   return (
     <View>
-      <TouchableHighlight onPress={() => goToSpeaker(speakerData)}>
-        <View key={data.session_id}>
-          <Text>{data.location}</Text>
-          <Text>{data.title}</Text>
-          <Text>{Moment.unix(data.start_time).format("h:mm a")}</Text>
-          <View>
-            <Image
-              style={{ height: 75, width: 75, borderRadius: 37.5 }}
-              source={{ uri: `${speakerData.image}` }}
-            />
-            <Text>{speakerData.name}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <View key={data.session_id}>
+        <Text>{data.location}</Text>
+        <Text>{data.title}</Text>
+        <Text>{Moment.unix(data.start_time).format("h:mm a")}</Text>
+        {speakerData ? (
+          <TouchableHighlight onPress={() => goToSpeaker(speakerData)}>
+            <View>
+              <Image
+                style={{ height: 75, width: 75, borderRadius: 37.5 }}
+                source={{ uri: `${speakerData.image}` }}
+              />
+              <Text>{speakerData.name}</Text>
+            </View>
+          </TouchableHighlight>
+        ) : null}
+      </View>
       {allFaves.indexOf(data.session_id) === -1 ? (
         <Button
           title="addToFaves"

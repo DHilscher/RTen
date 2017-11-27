@@ -12,7 +12,11 @@ class SpeakerContainer extends Component {
 
   static route = {
     navigationBar: {
-      title: "Speaker"
+      title: "About the Speaker",
+      leftButton: {
+        title: "X",
+        handler: () => leaveSpeaker()
+      }
     }
   };
 
