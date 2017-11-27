@@ -1,4 +1,3 @@
-import { formatSessionData } from "../../lib/helpers";
 import { queryFaves } from "../../config/models";
 
 export const getFavesBegin = () => {
@@ -14,21 +13,34 @@ export const getFavesError = error => {
   return { type: "GET_FAVES_ERROR", error };
 };
 
-export const getFaves = () => {
-  return dispatch => {
-    dispatch(getFavesBegin());
-    const allFave = queryFaves()
-      .reduce((acc, curr) => {
-        acc.push(curr.id);
-        return acc;
-      })
-      .then(() => {
-        dispatch(getFavesSuccess(allFave));
-      })
-      .catch(err => {
-        dispatch(getFavesError(err));
-      });
-  };
+// export const getFaves = () => {
+//   return dispatch => {
+//     dispatch(getFavesBegin());
+//     const allFave = queryFaves()
+//       .reduce((acc, curr) => {
+//         acc.push(curr.id);
+//         return acc;
+//       }, [])
+//       .then(() => {
+//         dispatch(getFavesSuccess(allFave));
+//       })
+//       .catch(err => {
+//         dispatch(getFavesError(err));
+//       });
+//   };
+// };
+
+export const getFaves = () => async dispatch => {
+  dispatch(getFavesBegin());
+  try {
+    const allFave = queryFaves().reduce((acc, curr) => {
+      acc.push(curr.id);
+      return acc;
+    }, []);
+    dispatch(getFavesSuccess(allFave));
+  } catch (err) {
+    dispatch(getFavesError(err));
+  }
 };
 
 const initialState = {
@@ -60,3 +72,14 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+// export const getFaves = () => {
+//   return dispatch => {
+//     dispatch(getFavesBegin());
+//     const allFave = queryFaves().reduce((acc, curr) => {
+//       acc.push(curr.id);
+//       return acc;
+//     }, []);
+//     dispatch(getFavesSuccess(allFave));
+//   };
+// };

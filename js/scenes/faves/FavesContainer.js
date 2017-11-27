@@ -7,6 +7,8 @@ import Router from "../../navigation/routes";
 
 import { connect } from "react-redux";
 import { getFaves } from "../../redux/modules/faves";
+import { formatSessionData } from "../../lib/helpers";
+import { getSessions } from "../../redux/modules/sessions";
 
 class FavesContainer extends Component {
   static PropTypes = {};
@@ -19,6 +21,7 @@ class FavesContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(getFaves());
+    this.props.dispatch(getSessions());
   }
 
   render() {
@@ -29,9 +32,9 @@ class FavesContainer extends Component {
       currentNavigatorUID,
       allFaves
     } = this.props;
-
-    const faveSessionData = sessionsData.filter(session => {
-      return allFaves.indexOf(session.session_id) > -1;
+    let faveSessionData = [];
+    faveSessionData = sessionsData.filter(session => {
+      return allFaves.indexOf(session.session_id) >= 0;
     });
     if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
@@ -39,7 +42,7 @@ class FavesContainer extends Component {
       return (
         <View>
           <Faves
-            data={faveSessionData}
+            data={formatSessionData(faveSessionData)}
             currentNavigatorUID={currentNavigatorUID}
             allFaves={allFaves}
           />
@@ -54,7 +57,7 @@ FavesContainer.PropTypes = {};
 const mapStateToProps = state => {
   return {
     sessionsData: state.sessions.sessions,
-    isLoading: state.sessions.isLoading,
+    isLoading: state.faves.isLoading,
     currentNavigatorUID: state.navigation.currentNavigatorUID,
     allFaves: state.faves.faves
   };

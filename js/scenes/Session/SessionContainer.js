@@ -27,7 +27,8 @@ class SessionContainer extends Component {
       isLoading,
       sessionData,
       speakerData,
-      currentNavigatorUID
+      currentNavigatorUID,
+      allFaves
     } = this.props;
     if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
@@ -38,6 +39,7 @@ class SessionContainer extends Component {
             currentNavigatorUID={currentNavigatorUID}
             speakerData={speakerData}
             data={sessionData}
+            allFaves={allFaves}
           />
         </View>
       );
@@ -50,7 +52,8 @@ SessionContainer.PropTypes = {};
 const mapStateToProps = state => {
   return {
     isLoading: state.sessions.isLoading,
-    speakerData: state.speaker.speaker
+    speakerData: state.speaker.speaker,
+    allFaves: state.faves.faves
   };
 };
 export default connect(mapStateToProps)(SessionContainer);

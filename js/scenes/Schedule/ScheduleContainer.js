@@ -24,7 +24,12 @@ class ScheduleContainer extends Component {
 
   render() {
     console.log(this.props);
-    const { isLoading, sessionsData, currentNavigatorUID } = this.props;
+    const {
+      isLoading,
+      sessionsData,
+      currentNavigatorUID,
+      allFaves
+    } = this.props;
     if (isLoading) {
       return <ActivityIndicator animating={true} size="small" />;
     } else {
@@ -33,6 +38,8 @@ class ScheduleContainer extends Component {
           <Schedule
             data={formatSessionData(sessionsData)}
             currentNavigatorUID={currentNavigatorUID}
+            isLoading={isLoading}
+            allFaves={allFaves}
           />
         </View>
       );
@@ -46,7 +53,8 @@ const mapStateToProps = state => {
   return {
     sessionsData: state.sessions.sessions,
     isLoading: state.sessions.isLoading,
-    currentNavigatorUID: state.navigation.currentNavigatorUID
+    currentNavigatorUID: state.navigation.currentNavigatorUID,
+    allFaves: state.faves.faves
   };
 };
 export default connect(mapStateToProps)(ScheduleContainer);

@@ -4,7 +4,8 @@ import {
   View,
   SectionList,
   TouchableHighlight,
-  Platform
+  Platform,
+  ActivityIndicator
 } from "react-native";
 import PropTypes from "prop-types";
 import { goToSession } from "../../lib/navigationHelpers";
@@ -13,7 +14,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const SessionList = ({ data, currentNavigatorUID }) => {
   console.log(data.length);
-  if (data) {
+
+  if (data.length > 0) {
     return (
       <SectionList
         sections={data}
@@ -46,13 +48,17 @@ const SessionList = ({ data, currentNavigatorUID }) => {
       />
     );
   } else if (currentNavigatorUID === "faves") {
-    <View>
-      <Text>Please add some events to favourites</Text>
-    </View>;
+    return (
+      <View>
+        <Text>Please add some events to favourites</Text>
+      </View>
+    );
   } else {
-    <View>
-      <Text>There is currently no scheduled events</Text>
-    </View>;
+    return (
+      <View>
+        <Text>There is currently no scheduled events</Text>
+      </View>
+    );
   }
 };
 
